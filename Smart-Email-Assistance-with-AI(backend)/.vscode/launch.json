@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SmartEmailAssistantWithAiApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.email.writer.SmartEmailAssistantWithAiApplication",
+            "projectName": "email-writer-sb",
+            "args": "",
+            "env": {
+                "GEMINI_URL": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+                "GEMINI_KEY": "AIzaSyAd2G6rXD-jNGJZXN_qahzgARdk2-TVb0w"
+            }
+        }
+    ]
+}
