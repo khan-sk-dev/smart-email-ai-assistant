@@ -9,28 +9,34 @@ import {
   Select,
   TextField,
   Typography,
-} from "@mui/material";
-import axios from "axios"; // Make sure to import axios
-import { useState } from "react";
-import "./App.css";
+} from "@mui/material"; // Importing Material-UI components for styling and layout
+import axios from "axios"; // Importing Axios for making API requests
+import { useState } from "react"; // Importing useState for managing component state
+import "./App.css"; // Importing external CSS file for styling
 
 function App() {
-  const [emailContent, setEmailContent] = useState("");
-  const [tone, setTone] = useState("");
-  const [generatedReply, setGeneratedReply] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // Define loading state
+  // State variables for user input, response, and error handling
+  const [emailContent, setEmailContent] = useState(""); // Stores the original email content
+  const [tone, setTone] = useState(""); // Stores the selected tone (optional)
+  const [generatedReply, setGeneratedReply] = useState(""); // Stores the AI-generated reply
+  const [error, setError] = useState(""); // Stores error messages
+  const [loading, setLoading] = useState(false); // Tracks whether the API request is in progress
 
+  /**
+   * Handles submission of the email content to the AI API for reply generation
+   */
   const handelSubmit = async () => {
-    setLoading(true);
+    setLoading(true); // Show loading indicator during API call
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/email/generate",
+        "http://localhost:8080/api/email/generate", // API endpoint for email generation
         {
           emailContent,
           tone,
         }
       );
+
+      // Ensure response is properly formatted
       setGeneratedReply(
         typeof response.data === "string"
           ? response.data
@@ -38,21 +44,24 @@ function App() {
       );
     } catch (error) {
       setError(
-        "An error occurred while generating the reply. Please try again"
+        "An error occurred while generating the reply. Please try again."
       );
       console.error(error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Hide loading indicator once API call is complete
     }
   };
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
+      {/* Header Section */}
       <Typography variant="h3" component="h1" gutterBottom>
         Email Reply Generator
       </Typography>
 
+      {/* Input Fields Section */}
       <Box sx={{ mx: 3 }}>
+        {/* Email Content Input */}
         <TextField
           fullWidth
           multiline
@@ -64,6 +73,7 @@ function App() {
           sx={{ mb: 2 }}
         />
 
+        {/* Tone Selection Dropdown */}
         <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel id="tone-label">Tone (Optional)</InputLabel>
           <Select
@@ -79,22 +89,25 @@ function App() {
           </Select>
         </FormControl>
 
+        {/* Generate Reply Button */}
         <Button
           variant="contained"
           onClick={handelSubmit}
-          disabled={!emailContent || loading}
+          disabled={!emailContent || loading} // Disable button when no input or while loading
           fullWidth
         >
           {loading ? <CircularProgress size={24} /> : "Generate Reply"}
         </Button>
       </Box>
 
+      {/* Error Message Display */}
       {error && (
         <Typography color="error" sx={{ mb: 2 }}>
           {error}
         </Typography>
       )}
 
+      {/* Generated Reply Display */}
       {generatedReply && (
         <Box sx={{ mt: 3 }}>
           <Typography variant="h6" gutterBottom>
@@ -106,10 +119,11 @@ function App() {
             rows={6}
             variant="outlined"
             value={generatedReply || ""}
-            inputProps={{ readOnly: true }} // Corrected syntax
+            inputProps={{ readOnly: true }} // Makes the text field read-only
           />
+          {/* Copy to Clipboard Button */}
           <Button
-            variant="outlined" // Fixed typo from "varient" to "variant"
+            variant="outlined"
             sx={{ mt: 2 }}
             onClick={() => navigator.clipboard.writeText(generatedReply)}
           >
