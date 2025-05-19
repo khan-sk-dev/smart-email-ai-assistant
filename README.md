@@ -1,21 +1,22 @@
- ##Smart Email Assistant with AI
+# 🚀 Smart Email Assistant with AI
 
- Overview
+## Overview
 Smart Email Assistant is an AI-powered tool that helps users generate professional and context-aware email replies. It consists of three main components:
 - Backend (Spring Boot): Handles API requests and integrates with Gemini AI for generating email replies.
 - Frontend (React & Material UI): A user-friendly web interface for inputting email content and selecting tone preferences.
 - Chrome Extension: Enhances Gmail by adding an AI reply button directly in the compose window.
 
 ## Features
-✅ AI-powered email reply generation
-✅ Supports multiple tones (Professional, Casual, Friendly)
-✅ Seamless integration with Gmail via a Chrome extension
-✅ Simple and clean UI using React & Material UI
-✅ Secure backend powered by Spring Boot & WebClient
+✅ AI-powered email reply generation  
+✅ Supports multiple tones (Professional, Casual, Friendly)  
+✅ Seamless integration with Gmail via a Chrome extension  
+✅ Simple and clean UI using React & Material UI  
+✅ Secure backend powered by Spring Boot & WebClient  
 
 ---
 
 ## Tech Stack
+
 ### Backend:
 - Java (Spring Boot) – REST API for handling email generation requests
 - WebClient – To interact with Gemini AI API
@@ -80,6 +81,7 @@ Smart Email Assistant is an AI-powered tool that helps users generate profession
 ---
 
 ## Usage
+
 ### Web Interface (React App)
 1. Open the web app and enter the email content
 2. Select the desired tone (Professional, Casual, Friendly)
@@ -104,4 +106,3 @@ Smart Email Assistant is an AI-powered tool that helps users generate profession
 ---
 
 Happy coding! 🚀
-
